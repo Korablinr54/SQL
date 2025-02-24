@@ -7,3 +7,12 @@ SELECT model,
   FROM PC
  WHERE price < 500
 ```
+<br/>  
+
+Задание: 2  
+Найдите производителей принтеров. Вывести: maker  
+```SQL
+SELECT DISTINCT maker
+  FROM Product
+WHERE type = 'printer'
+```
