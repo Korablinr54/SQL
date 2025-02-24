@@ -58,3 +58,23 @@ SELECT distinct p.maker,
   LEFT JOIN Laptop AS l ON p.model = l.model
  WHERE l.hd >= 10;
 ```
+<br/>  
+
+Задание: 7  
+Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква)
+```SQL
+SELECT a.model, price 
+  FROM (SELECT model,
+               price 
+          FROM PC 
+ UNION
+        SELECT model,
+               price 
+          FROM Laptop
+ UNION
+        SELECT model,
+               price 
+          FROM Printer) AS a
+  JOIN Product p ON a.model = p.model
+ WHERE p.maker = 'B'
+```
