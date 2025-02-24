@@ -14,5 +14,16 @@ SELECT model,
 ```SQL
 SELECT DISTINCT maker
   FROM Product
-WHERE type = 'printer'
+ WHERE type = 'printer'
+```
+<br/>  
+
+Задание: 3  
+Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000 дол.  
+```SQL
+SELECT model,
+       ram,
+       screen
+  FROM Laptop
+ WHERE price > 1000
 ```
