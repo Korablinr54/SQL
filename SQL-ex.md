@@ -78,3 +78,65 @@ SELECT a.model, price
   JOIN Product p ON a.model = p.model
  WHERE p.maker = 'B'
 ```
+<br/>  
+
+Задание: 8  
+Найдите производителя, выпускающего ПК, но не ПК-блокноты
+```SQL
+SELECT distinct maker
+  FROM product 
+ WHERE type = 'PC'
+
+EXCEPT
+
+SELECT DISTINCT maker
+  FROM product
+ WHERE type = 'Laptop'
+```
+<br/>  
+
+Задание: 9  
+Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker
+```SQL
+SELECT DISTINCT p.maker
+  FROM Product p
+  LEFT JOIN pc ON p.model = pc.model
+ WHERE speed >= 450
+```
+<br/>  
+
+Задание: 10  
+Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
+```SQL
+SELECT model,
+       price
+  FROM printer
+ WHERE price = (SELECT MAX(price) 
+                  FROM printer)
+```
+<br/>  
+
+Задание: 11  
+Найдите среднюю скорость ПК
+```SQL
+SELECT AVG(speed)
+  FROM pc
+```
+<br/>  
+
+Задание: 12  
+Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол.
+```SQL
+SELECT AVG(speed)
+  FROM Laptop
+ WHERE price > 1000
+```
+<br/>  
+
+Задание: 13  
+Найдите среднюю скорость ПК, выпущенных производителем A
+```SQL
+SELECT AVG(speed)
+  FROM Pc
+  JOIN Product AS p ON p.model = Pc.model AND p.maker = 'A'
+```
