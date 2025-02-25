@@ -140,3 +140,14 @@ SELECT AVG(speed)
   FROM Pc
   JOIN Product AS p ON p.model = Pc.model AND p.maker = 'A'
 ```
+br/>  
+
+Задание: 14  
+```SQL
+SELECT s.class,
+       s.name,
+       c.country
+  FROM Ships AS s
+  LEFT JOIN Classes AS c ON s.class = c.class
+ WHERE c.numGuns >= 10;
+ ```
