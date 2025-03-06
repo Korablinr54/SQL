@@ -140,9 +140,10 @@ SELECT AVG(speed)
   FROM Pc
   JOIN Product AS p ON p.model = Pc.model AND p.maker = 'A'
 ```
-br/>  
+<br/>  
 
 Задание: 14  
+Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий  
 ```SQL
 SELECT s.class,
        s.name,
@@ -151,3 +152,14 @@ SELECT s.class,
   LEFT JOIN Classes AS c ON s.class = c.class
  WHERE c.numGuns >= 10;
  ```
+ <br/>  
+
+Задание: 15  
+Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD  
+```SQL
+SELECT HD
+  FROM (SELECT HD, COUNT(*) as cnt
+          FROM PC
+         GROUP BY HD
+        HAVING COUNT(*) > 1) as t;
+```
