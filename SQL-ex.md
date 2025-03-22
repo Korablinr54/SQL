@@ -194,4 +194,23 @@ SELECT DISTINCT
 ```
 <br/>  
 
-Задание:
+Задание: 18  
+Найдите производителей самых дешевых цветных принтеров. Вывести: maker, price  
+```SQL
+SELECT DISTINCT pt.maker, pr.price
+  FROM (SELECT model, price 
+          FROM Printer 
+         WHERE color = 'y') as pr
+  JOIN Product as pt ON pr.model = pt.model
+ WHERE price = (SELECT min(price) 
+                  FROM Printer 
+                 WHERE color = 'y');
+```
+<br/>  
+
+Задание: 19  
+Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов.  
+```SQL
+
+```
+
