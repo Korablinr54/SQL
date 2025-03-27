@@ -222,7 +222,7 @@ SELECT p.maker, AVG(screen) AS Avg_screen
 Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК  
 ```SQL
 SELECT maker, 
-       count(distinct model) as count_model
+       count(distinct model) AS count_model
   FROM Product
  WHERE type = 'PC'
  GROUP BY maker
