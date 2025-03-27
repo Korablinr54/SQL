@@ -209,7 +209,7 @@ SELECT DISTINCT pt.maker, pr.price
 <br/>  
 
 Задание: 19  
-Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов.  
+Для каждого производителя, имеющего модели в таблице Laptop, найдите средний размер экрана выпускаемых им ПК-блокнотов  
 ```SQL
 SELECT p.maker, AVG(screen) AS Avg_screen
   FROM Product AS p
@@ -220,6 +220,18 @@ SELECT p.maker, AVG(screen) AS Avg_screen
 
 Задание: 20  
 Найдите производителей, выпускающих по меньшей мере три различных модели ПК. Вывести: Maker, число моделей ПК  
+```SQL
+SELECT maker, 
+       count(distinct model) as count_model
+  FROM Product
+ WHERE type = 'PC'
+ GROUP BY maker
+HAVING count(distinct model) >= 3;
+```
+<br/>  
+
+Задание: 21  
+Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC  
 ```SQL
 
 ```
