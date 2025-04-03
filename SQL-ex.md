@@ -233,5 +233,16 @@ HAVING count(distinct model) >= 3;
 Задание: 21  
 Найдите максимальную цену ПК, выпускаемых каждым производителем, у которого есть модели в таблице PC  
 ```SQL
+SELECT maker, 
+       MAX(price)
+  FROM Product
+  JOIN PC USING (model) 
+ GROUP BY maker;
+```
+<br/>  
+
+Задание: 22    
+
+```SQL
 
 ```
