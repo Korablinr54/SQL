@@ -254,6 +254,21 @@ SELECT speed,
 <br/>  
 
 Задание: 23      
+Найдите производителей, которые производили бы как ПК со скоростью не менее 750 МГц, так и ПК-блокноты со скоростью не менее 750 МГц
+```SQL
+SELECT distinct p.maker
+  FROM Product AS p
+  JOIN PC AS pc USING (model) WHERE pc.speed >= 750
+
+UNION 
+
+SELECT distinct p.maker
+  FROM Product AS p
+  JOIN Laptop AS l USING (model) WHERE l.speed >= 750
+```
+<br/>  
+
+Задание: 24      
 
 ```SQL
 
