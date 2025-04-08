@@ -269,6 +269,30 @@ SELECT distinct p.maker
 <br/>  
 
 Задание: 24      
+Перечислите номера моделей любых типов, имеющих самую высокую цену по всей имеющейся в базе данных продукции.
+```SQL
+WITH cte AS(
+
+SELECT DISTINCT model, price
+  FROM PC
+
+UNION
+
+SELECT DISTINCT model, price
+  FROM Laptop
+
+UNION 
+
+SELECT DISTINCT model, price
+  FROM Printer)
+
+SELECT model
+  FROM cte
+ WHERE price = (SELECT MAX(price) FROM cte);
+```
+<br/>  
+
+Задание: 25      
 
 ```SQL
 
