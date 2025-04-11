@@ -329,6 +329,20 @@ SELECT AVG(Price)
 <br/>  
 
 Задание: 27      
+Найдите средний размер диска ПК каждого из тех производителей, которые выпускают и принтеры. Вывести: maker, средний размер HD
+```SQL
+SELECT p.maker, 
+       AVG(pc.hd) AS Avg_hd
+  FROM Product AS p
+  JOIN PC AS pc ON p.model = pc.model
+ WHERE p.maker IN (SELECT p.maker
+                     FROM Product AS p
+                    WHERE p.type = 'Printer')                   
+ GROUP BY p.maker;
+```
+<br/>  
+
+Задание: 28      
 
 ```SQL
 
