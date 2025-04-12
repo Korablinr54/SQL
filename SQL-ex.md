@@ -343,6 +343,21 @@ SELECT p.maker,
 <br/>  
 
 Задание: 28      
+Используя таблицу Product, определить количество производителей, выпускающих по одной модели
+```SQL
+  WITH cte AS (
+SELECT maker, count(model) as qty
+  FROM Product
+ GROUP BY maker
+)
+
+SELECT COUNT(maker)
+  FROM cte
+ WHERE qty = 1;
+```
+<br/>  
+
+Задание: 29      
 
 ```SQL
 
