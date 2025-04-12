@@ -362,3 +362,10 @@ SELECT COUNT(maker)
 ```SQL
 
 ```
+<br/>  
+
+Задание: 30        
+
+```SQL
+
+```
