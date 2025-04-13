@@ -358,9 +358,24 @@ SELECT COUNT(maker)
 <br/>  
 
 Задание: 29      
-
+В предположении, что приход и расход денег на каждом пункте приема фиксируется не чаще одного раза в день [т.е. первичный ключ (пункт, дата)], написать запрос с выходными данными (пункт, дата, приход, расход)
 ```SQL
-
+ SELECT t.point,
+        t.date,
+        SUM(t.inc),
+        sum(t.out) 
+  FROM (SELECT point,
+               date,
+               inc,
+               NULL AS out
+          FROM Income_o 
+    UNION 
+        SELECT point,
+               date,
+               NULL AS inc,
+               Outcome_o.out
+          FROM Outcome_o) AS t 
+  GROUP BY t.point, t.date;
 ```
 <br/>  
 
