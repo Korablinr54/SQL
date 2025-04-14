@@ -380,6 +380,25 @@ SELECT COUNT(maker)
 <br/>  
 
 Задание: 30        
+В предположении, что приход и расход денег на каждом пункте приема фиксируется произвольное число раз (первичным ключом в таблицах является столбец code), требуется получить таблицу, в которой каждому пункту за каждую дату выполнения операций будет соответствовать одна строка
+```SQL
+SELECT point,
+       date,
+       SUM(sum_out),
+       SUM(sum_inc)
+  FROM (SELECT point, date, SUM(inc) AS sum_inc, null AS sum_out
+          FROM Income
+         GROUP BY point, date
+ UNION
+        SELECT point, date, null AS sum_inc, SUM(out) AS sum_out
+          FROM Outcome
+         GROUP BY point, date) AS t1
+GROUP BY point, date
+ORDER BY point;
+```
+<br/>  
+
+Задание: 31        
 
 ```SQL
 
