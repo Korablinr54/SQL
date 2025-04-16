@@ -415,8 +415,8 @@ SELECT c.country,
        c.class,
        c.bore,
        s.name
- FROM classes c
- LEFT JOIN ships s ON c.class = s.class
+  FROM classes c
+  LEFT JOIN ships s ON c.class = s.class
 
  UNION ALL
 
