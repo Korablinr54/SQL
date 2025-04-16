@@ -408,6 +408,35 @@ select class, country
 <br/>  
 
 Задание: 32        
+Одной из характеристик корабля является половина куба калибра его главных орудий (mw). С точностью до 2 десятичных знаков определите среднее значение mw для кораблей каждой страны, у которой есть корабли в базе данных
+```SQL
+  WITH combined_data AS (
+SELECT c.country,
+       c.class,
+       c.bore,
+       s.name
+ FROM classes c
+ LEFT JOIN ships s ON c.class = s.class
+
+ UNION ALL
+
+SELECT DISTINCT c.country,
+       c.class,
+       c.bore,
+       o.ship AS name
+  FROM classes c
+  LEFT JOIN outcomes o ON c.class = o.ship
+ WHERE o.ship = c.class AND o.ship NOT IN (SELECT name FROM ships))
+
+SELECT country,
+       CAST(AVG((POWER(bore, 3) / 2)) AS NUMERIC(6, 2)) AS weight
+  FROM combined_data
+ WHERE name IS NOT NULL
+ GROUP BY country;
+```
+<br/>  
+
+Задание: 33        
 
 ```SQL
 
