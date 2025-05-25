@@ -3,15 +3,15 @@
 ## Запуск
 Запускаем PostgreSQL в docker
 ```bash
-docker run --name my-postgres `  -- запусукаем контейнер с именем my-postgres
-  -e POSTGRES_PASSWORD=your_password `   -- указываем пароль
-  -d -p 5432:5432 `   -- -в в фоновом режиме. проброс порта 5432 
+docker run --name my-postgres \'  -- запусукаем контейнер с именем my-postgres
+  -e POSTGRES_PASSWORD=your_password \'   -- указываем пароль
+  -d -p 5432:5432 \'   -- -d в фоновом режиме. проброс порта 5432 
   postgres:latest   -- последняя версия образа
 ```
 
 Проверяем запущен ли образ  
 ```bash
-PS C:\Users\user> docker ps
+docker ps
 ```  
 | Колонка         | Описание                                                                 |
 |----------------|--------------------------------------------------------------------------|
