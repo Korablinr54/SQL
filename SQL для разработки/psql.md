@@ -91,16 +91,5 @@ CREATE DATABASE MyDB;
 \c <database_name> -- без скобок указываем имя бд
 \conninfo -- првоеряем, куда мы подключены
 ```
-                                  List of databases
-   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
------------+----------+----------+------------+------------+-----------------------
- MyDB      | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
- postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
- template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
-           |          |          |            |            | postgres=CTc/postgres
- template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
-           |          |          |            |            | postgres=CTc/postgres
-(4 rows)
-
-You are now connected to database "MyDB" as user "postgres".
+`You are now connected to database "MyDB" as user "postgres".`  
 
