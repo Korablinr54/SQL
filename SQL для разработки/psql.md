@@ -1,5 +1,7 @@
 # Команды psql
 
+Служебные команды `psql` начинаются с `\`  
+
 ## Запуск
 
 ### Запускаем контейнер
@@ -37,3 +39,16 @@ docker exec -it my-postgres psql -U postgres
 | `psql`                                       | Утилита PostgreSQL для взаимодействия с базой данных.                   |
 | `-U postgres`                                | Указывает пользователя `postgres`, который будет использоваться для подключения. |
 
+## Создание базы данных
+
+Для начала проверим, какие БД у нас уже существуют.  
+```bash
+\l   -- возвращает список всех БД
+```
+Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | Locale | ICU Rules |   Access privileges       
+-----------+----------+----------+-----------------+------------+------------+--------+-----------+-----------------------    
+ postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           |
+ template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    
+           |          |          |                 |            |            |        |           | postgres=CTc/postgres     
+ template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    
+           |          |          |                 |            |            |        |           | postgres=CTc/postgres     
