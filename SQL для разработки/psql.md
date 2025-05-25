@@ -45,10 +45,11 @@ docker exec -it my-postgres psql -U postgres
 ```bash
 \l   -- возвращает список всех БД
 ```
-Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | Locale | ICU Rules |   Access privileges       
------------+----------+----------+-----------------+------------+------------+--------+-----------+-----------------------    
- postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           |
- template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    
-           |          |          |                 |            |            |        |           | postgres=CTc/postgres     
- template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    
-           |          |          |                 |            |            |        |           | postgres=CTc/postgres     
+| Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | Locale | ICU Rules |   Access privileges       |
+|---------|----------|----------|-----------------|------------|------------|--------|-----------|---------------------------|
+| postgres  | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           |                           |
+| template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    |
+|         |          |          |                 |            |            |        |           | postgres=CTc/postgres     |
+| template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    |
+|         |          |          |                 |            |            |        |           | postgres=CTc/postgres     |
+| (3 rows) |          |          |                 |            |            |        |           |                           |
