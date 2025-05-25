@@ -65,3 +65,42 @@ docker exec -it my-postgres psql -U postgres
 | `ICU Rules`         | Используемые правила для сортировки и форматирования текста.             |
 | `Access privileges` | Права доступа к базе данных.                                             |  
 
+Теперь создадим базу данных используя команду `CREATE DATABASE` 
+```bash
+CREATE DATABASE MyDB;
+```
+
+Убеждаемся в том, что БД создана используя команду `\list` или просто `\l`
+```bash
+\l
+```  
+| Name    |  Owner   | Encoding | Locale Provider |  Collate   |   Ctype    | Locale | ICU Rules |   Access privileges       |
+|---------|----------|----------|-----------------|------------|------------|--------|-----------|---------------------------|
+| MyBD    | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           |                           |
+| template0 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    |
+|         |          |          |                 |            |            |        |           | postgres=CTc/postgres     |
+| template1 | postgres | UTF8     | libc            | en_US.utf8 | en_US.utf8 |        |           | =c/postgres          +    |
+|         |          |          |                 |            |            |        |           | postgres=CTc/postgres     |  
+
+База данных успешно создана.  
+
+### Переключаемся между БД
+для того, чтобы переключиться между БД необходимо использовать команду `\c` - connect
+```bash
+\l -- првоеряем списко БД
+\c <database_name> -- без скобок указываем имя бд
+\conninfo -- првоеряем, куда мы подключены
+```
+                                  List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ MyDB      | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(4 rows)
+
+You are now connected to database "MyDB" as user "postgres".
+
