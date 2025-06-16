@@ -6,11 +6,24 @@
 ---
 
 ## 🛠 Технологии
-| Технология | Описание |
-|------------|----------|
-| ![PostgreSQL](https://img.icons8.com/color/48/000000/postgreesql.png) PostgreSQL | Реляционная СУБД |
-| ![Docker](https://img.icons8.com/color/48/000000/docker.png) Docker | Контейнеризация приложения |
-| ![DBeaver](https://dbeaver.io/wp-content/uploads/2015/09/beaver-head.png) DBeaver | Универсальный клиент для работы с БД |
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="150">
+        <img src="https://img.icons8.com/color/48/000000/postgreesql.png" width="48" height="48" alt="PostgreSQL"/><br>
+        PostgreSQL
+      </td>
+      <td align="center" width="150">
+        <img src="https://img.icons8.com/color/48/000000/docker.png" width="48" height="48" alt="Docker"/><br>
+        Docker
+      </td>
+      <td align="center" width="150">
+        <img src="https://img.icons8.com/ios-filled/50/000000/database.png" width="48" height="48" alt="DBeaver"/><br>
+        DBeaver
+      </td>
+    </tr>
+  </table>
+</div>
 
 ---
 
@@ -31,6 +44,9 @@ docker run --name postgres \
 
 - **raw_data** - исходные необработанные данные
 - **car_shop** - нормализованная структура данных
+
+![image](https://github.com/user-attachments/assets/599e024f-5665-4570-b7b8-9a78ca20ea05)
+
 
 graph TD
     A[База данных] --> B(raw_data)
