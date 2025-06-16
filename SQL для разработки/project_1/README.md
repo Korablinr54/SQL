@@ -18,7 +18,7 @@ docker run --name postgres \
   -d -p 5432:5432 \
   -v D:/project_1:/mnt/data \
   postgres
-
+```
 ## Структура базы данных
 
 ### Схемы
