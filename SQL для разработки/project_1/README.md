@@ -47,20 +47,6 @@ docker run --name postgres \
 
 ![image](https://github.com/user-attachments/assets/599e024f-5665-4570-b7b8-9a78ca20ea05)
 
-
-graph TD
-    A[База данных] --> B(raw_data)
-    A --> C(car_shop)
-    B --> D[sales]
-    B --> E[sales_processed]
-    C --> F[countries]
-    C --> G[brands]
-    C --> H[colors]
-    C --> I[models]
-    C --> J[cars]
-    C --> K[persons]
-    C --> L[sales_normalized]
-
 ### Таблицы
 
 #### Схема raw_data
