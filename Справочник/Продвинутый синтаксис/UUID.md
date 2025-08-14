@@ -20,3 +20,26 @@ driver_name text,
 driver_license bigint,
 depot_id integer)
 ```   
+
+Теперь при вставке можно как указывать явно (функция или значение) так и не указывать guid вовсе:  
+```SQL
+INSERT INTO drivers (guid, driver_name, driver_license, depot_id) 
+VALUES (GEN_RANDOM_UUID(), 'Земцов Вячеслав Николаевич', '4444567567', NULL)
+```
+```SQL
+INSERT INTO drivers (driver_name, driver_license, depot_id) 
+VALUES ('Иванов Сергей Олегович', 7777123123, 1)
+```
+```SQL
+INSERT INTO drivers (guid, driver_name, driver_license, depot_id) 
+VALUES (
+    '30bfcb96-afc2-4819-bf97-7c56c863991c',
+    'Свиридов Михаил Владимирович', 
+    9876876876, 
+    2)
+```  
+guid                                |driver_name                 |driver_license|depot_id|
+------------------------------------+----------------------------+--------------+--------+
+17b949d4-0806-45a3-b65f-60777766b2dd|Иванов Сергей Олегович      |    7777123123|       1|
+1f8c9bd8-ae82-4712-a6c7-1bfc6b48db63|Земцов Вячеслав Николаевич  |    4444567567|        |
+30bfcb96-afc2-4819-bf97-7c56c863991c|Свиридов Михаил Владимирович|    9876876876|       2|
