@@ -96,3 +96,10 @@
 | Операторы (конкатенация, вхождение и др.) | Нет | **Да** |
 | Функции для изменения ключей/значений | Нет | **Да** |
 
+# Объявление полей JSON
+```sql
+ALTER TABLE test.clients ADD COLUMN worksheet_json json;
+ALTER TABLE test.clients ADD COLUMN worksheet_jsonb jsonb;
+```
+
+# Создание json/jsonb
