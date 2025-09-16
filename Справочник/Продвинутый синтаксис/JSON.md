@@ -103,3 +103,43 @@ ALTER TABLE test.clients ADD COLUMN worksheet_jsonb jsonb;
 ```
 
 # Создание json/jsonb
+```sql
+ INSERT INTO test.clients (id, name, email, phone, add_phone, worksheet_jsonb, worksheet_json)
+ values(
+ gen_random_uuid(),
+ 'Колесов Игорь Витальевич',
+ 'proverka@mail.ru',
+ 9609469976,
+ '{{9609469979}, {9609469978}}',
+'{
+       "name": "Колесов Игорь Витальевич",
+       "birth_date": "12.06.1985",
+       "children": [
+           {
+               "relationship": "сын",
+               "name": "Колесов Артем"
+           },
+           {
+               "relationship": "дочь",
+               "name": "Колесова Инна"
+           }
+       ]
+    }', -- вставьте значение в столбец с типом jsonb
+    '{
+       "name": "Колесов Игорь Витальевич",
+       "birth_date": "12.06.1985",
+       "children": [
+           {
+               "relationship": "сын",
+               "name": "Колесов Артем"
+           },
+           {
+               "relationship": "дочь",
+               "name": "Колесова Инна"
+           }
+       ]
+    }' -- вставьте значение в столбец с типом json
+)
+```
+
+# Операторы для работы с JSON и JSONB
