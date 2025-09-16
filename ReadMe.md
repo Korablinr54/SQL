@@ -1,3 +1,7 @@
+[![SQL](https://img.shields.io/badge/SQL-Structured%20Query%20Language-003B57?style=for-the-badge&logo=postgresql&logoColor=white)](https://en.wikipedia.org/wiki/SQL)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16+-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![PL/pgSQL](https://img.shields.io/badge/PL%2FpgSQL-Procedural%20Language-CC2927?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/docs/current/plpgsql.html)
+
 # SQL-репозиторий: изучение PostgreSQL
 ---
 Привет!  
