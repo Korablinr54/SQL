@@ -143,3 +143,17 @@ ALTER TABLE test.clients ADD COLUMN worksheet_jsonb jsonb;
 ```
 
 # Операторы для работы с JSON и JSONB
+
+## Чтение из json/jsonb
+Например, нужно извлечь имя из json-поля:
+```sql
+SELECT worksheet_json -> 'name' -- вернет объект json, текст будет заключен в кавычки
+  FROM test.clients;
+
+SELECT worksheet_json ->> 'name' -- вернет текст
+  FROM test.clients;
+```
+
+Результат:  
+* в первом случае: `"Колесов Игорь Витальевич"`  
+* во втором случае: `Колесов Игорь Витальевич`  
