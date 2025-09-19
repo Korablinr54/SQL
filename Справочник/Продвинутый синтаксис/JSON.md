@@ -171,8 +171,15 @@ SELECT worksheet_json -> 'children' -> 0
 SELECT worksheet_json -> 'children' -> -1    
   FROM test.clients;    
 
--- результат: {  
-               "relationship": "дочь",  
-               "name": "Колесова Инна"  
-              }  
+-- результат:  {  
+                  "relationship": "дочь",  
+                  "name": "Колесова Инна"  
+               }  
+```
+
+По аналогии можно использовать такую запись, указать вложенные массив и индекс:  
+```sql  
+SELECT worksheet_json::jsonb #>> '{children, 0}'  
+  FROM test.clients;  
+-- вернет: {"name": "Колесов Артем", "relationship": "сын"}
 ```
