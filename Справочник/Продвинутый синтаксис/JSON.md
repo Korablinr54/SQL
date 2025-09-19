@@ -232,3 +232,16 @@ SELECT worksheet_jsonb::jsonb -> 'children' @> '[{"name": "Колесов Арт
   FROM test.clients;
 --вернет true
 ```
+
+### Присутствие
+Можно проверять наличие ключа используя аргументы `?` для единичного поиска или `?|` для поиска массива ключей (встречается хотя бы один) или `?&` - если встречаются все ключи среди верхнего уровня:  
+```sql  
+SELECT worksheet_jsonb::jsonb ? 'name' 
+  FROM test.clients; -- true
+
+SELECT worksheet_jsonb::jsonb ?| array['name', 'birth_date', 'proverka'] 
+  FROM test.clients; -- true тк встречается хотя бы один из элементов массива
+  
+SELECT worksheet_jsonb::jsonb ?& array['name', 'birth_date', 'proverka'] 
+  FROM test.clients; -- false тк не встречается proverka
+```
