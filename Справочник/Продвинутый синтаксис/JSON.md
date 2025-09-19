@@ -183,3 +183,32 @@ SELECT worksheet_json::jsonb #>> '{children, 0}'
   FROM test.clients;  
 -- вернет: {"name": "Колесов Артем", "relationship": "сын"}
 ```
+
+## Функции для работы с jsonb  
+### Конкатенация  
+
+Конкатенация позволяет объединить два jsonb объекта, обратите внимание на кавычки:  
+```sql  
+SELECT worksheet_jsonb::jsonb || '{"eye_color" : "blue"}'::jsonb  
+  FROM test.clients;  
+```
+
+Результат:   
+```json  
+{  
+  "name": "Колесов Игорь Витальевич",  
+  "children": [  
+    {  
+      "name": "Колесов Артем",  
+      "relationship": "сын"  
+    },  
+    {  
+      "name": "Колесова Инна",  
+      "relationship": "дочь"  
+    }  
+  ],  
+  "eye_color": "blue",  
+  "birth_date": "12.06.1985"  
+}  
+```
+* в jsonb порядок расположения объектов в запросе не гарантирует результат в итоговом наборе, т.к. jsonb не сохраняет порядок ключей.  
