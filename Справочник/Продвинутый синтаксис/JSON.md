@@ -245,3 +245,50 @@ SELECT worksheet_jsonb::jsonb ?| array['name', 'birth_date', 'proverka']
 SELECT worksheet_jsonb::jsonb ?& array['name', 'birth_date', 'proverka'] 
   FROM test.clients; -- false тк не встречается proverka
 ```
+
+### Удаление
+С помощью минуса можно удалять ключи из объекта. Например:  
+```sql
+SELECT worksheet_jsonb::jsonb
+  FROM test.clients;
+```  
+Вернет:  
+```json
+{
+  "name": "Колесов Игорь Витальевич",
+  "children": [
+    {
+      "name": "Колесов Артем",
+      "relationship": "сын"
+    },
+    {
+      "name": "Колесова Инна",
+      "relationship": "дочь"
+    }
+  ],
+  "birth_date": "12.06.1985"
+}
+```
+
+Тогда как:  
+```sql
+SELECT worksheet_jsonb::jsonb - 'name'
+  FROM test.clients;
+```  
+
+Вернет объект без ключа 'name':
+```json
+{
+  "children": [
+    {
+      "name": "Колесов Артем",
+      "relationship": "сын"
+    },
+    {
+      "name": "Колесова Инна",
+      "relationship": "дочь"
+    }
+  ],
+  "birth_date": "12.06.1985"
+}
+```
