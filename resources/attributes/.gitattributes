@@ -1,5 +1,5 @@
-*.sql linguist-language=sql
+*.sql linguist-language=PostgreSQL
 *.sql linguist-detectable=true
 
-- language: SQL
+- language: PostgreSQL
 negative_pattern: '(?i:begin|boolean|package|exception)'
