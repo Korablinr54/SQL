@@ -1,4 +1,4 @@
-- language: SQL
+- language: PostgreSQL
 negative_pattern: '(?i:begin|boolean|package|exception)'
 
 WITH cte AS (  
