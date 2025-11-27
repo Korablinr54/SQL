@@ -57,9 +57,10 @@ postgres=# \l
 
 А теперь создадим новую базу и посмотрим как изменится вывод команды `\l`.  
 ```sql
-postgres=# CREATE DATABASE practicum;
-CREATE DATABASE
-postgres=# \l
+postgres=# CREATE DATABASE practicum; -- создаем новую БД
+CREATE DATABASE -- сообщение о том, что база создана
+
+postgres=# \l -- проверяем список БД
                                                              List of databases
    Name    |  Owner   | Encoding | Locale Provider |       Collate       |        Ctype        | Locale | ICU Rules |   Access privileges
 -----------+----------+----------+-----------------+---------------------+---------------------+--------+-----------+-----------------------
@@ -73,4 +74,7 @@ postgres=# \l
 ```
 
 В выводе теперь видим, что мы создали базу данных `practicum`.  
-
+Но приглашение по прежнему сообщает, что мы подключены к БД `postgres`.
+```sql
+postgres=# -- подключены к бд postgres
+```
