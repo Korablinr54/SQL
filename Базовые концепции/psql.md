@@ -78,3 +78,12 @@ postgres=# \l -- проверяем список БД
 ```sql
 postgres=# -- подключены к бд postgres
 ```
+
+Теперь переключимся на другую бд используя команду `\c`.  
+```sql
+postgres=# \c practicum -- переключаемся 
+You are now connected to database "practicum" as user "postgres".
+-- получаем уведомление о том, что мы переключились с "postgres" на "practicum"
+
+practicum=# -- строка приглашения указывает на то, что мы успешно переключились
+```
