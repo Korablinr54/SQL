@@ -1,3 +1,4 @@
+# Список команд
 | Команда | Описание |
 |--------|--------|
 | `\l` или `\l+` | Показать список всех баз данных |
@@ -29,3 +30,47 @@
 | `\pset format <format>` | Установить формат вывода: `aligned`, `csv`, `html`, `latex` и др. |
 | `\pset border <0/1/2>` | Стиль рамки: 0 — нет, 1 — минимальный, 2 — полный |
 | `\pset tuples_only` | Включить/выключить вывод только данных (без заголовков и рамок) |
+
+# Примеры использования
+
+## Создание БД
+
+Для начала проверим список существующих баз данных:  
+```sql
+Текущая кодовая страница: 1251
+Password for user postgres:
+
+psql (18.0)
+Type "help" for help.
+
+postgres=# \l
+                                                             List of databases
+   Name    |  Owner   | Encoding | Locale Provider |       Collate       |        Ctype        | Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+---------------------+---------------------+--------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | Russian_Russia.1251 | Russian_Russia.1251 |        |           |
+ template0 | postgres | UTF8     | libc            | Russian_Russia.1251 | Russian_Russia.1251 |        |           | =c/postgres          +
+           |          |          |                 |                     |                     |        |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | Russian_Russia.1251 | Russian_Russia.1251 |        |           | =c/postgres          +
+           |          |          |                 |                     |                     |        |           | postgres=CTc/postgres
+(3 rows)
+```
+
+А теперь создадим новую базу и посмотрим как изменится вывод команды `\l`.  
+```sql
+postgres=# CREATE DATABASE practicum;
+CREATE DATABASE
+postgres=# \l
+                                                             List of databases
+   Name    |  Owner   | Encoding | Locale Provider |       Collate       |        Ctype        | Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+---------------------+---------------------+--------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | Russian_Russia.1251 | Russian_Russia.1251 |        |           |
+ practicum | postgres | UTF8     | libc            | Russian_Russia.1251 | Russian_Russia.1251 |        |           |
+ template0 | postgres | UTF8     | libc            | Russian_Russia.1251 | Russian_Russia.1251 |        |           | =c/postgres          +
+           |          |          |                 |                     |                     |        |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | Russian_Russia.1251 | Russian_Russia.1251 |        |           | =c/postgres          +
+           |          |          |                 |                     |                     |        |           | postgres=CTc/postgres
+(4 rows)
+```
+
+В выводе теперь видим, что мы создали базу данных `practicum`.  
+
