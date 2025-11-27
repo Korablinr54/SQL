@@ -2,7 +2,7 @@
 | Команда | Описание |
 |--------|--------|
 | `\l` или `\l+` | Показать список всех баз данных |
-| `\x` | Отключить расширеный вывод |
+| `\x on / off` | Отключить расширеный вывод |
 | `CREATE DATABASE name` | Создать базу данных |
 | `DROP DATABASE name` | Удалить базу данных |
 | `\c <имя_бд>` | Подключиться к указанной базе данных |
@@ -76,6 +76,8 @@ postgres=# \l -- проверяем список БД
 (4 rows)
 ```
 
+## Подсключение к БД
+
 В выводе теперь видим, что мы создали базу данных `practicum`.  
 Но приглашение по прежнему сообщает, что мы подключены к БД `postgres`.
 ```sql
@@ -89,4 +91,35 @@ You are now connected to database "practicum" as user "postgres".
 -- получаем уведомление о том, что мы переключились с "postgres" на "practicum"
 
 practicum=# -- строка приглашения указывает на то, что мы успешно переключились
+```
+
+Мы уже видели как отображается вывод команды `\l`. Выглядит не слишком удобно. Можно включить подробный вывод командой `\x` или `\x off / on`.  
+
+```sql
+practicum=# \x -- режим включен
+Expanded display is on.
+
+practicum=# \l -- снова выводим список БД
+List of databases
+-[ RECORD 1 ]-----+----------------------
+Name              | postgres
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | Russian_Russia.1251
+Ctype             | Russian_Russia.1251
+Locale            |
+ICU Rules         |
+Access privileges |
+-[ RECORD 2 ]-----+----------------------
+Name              | practicum
+Owner             | postgres
+Encoding          | UTF8
+Locale Provider   | libc
+Collate           | Russian_Russia.1251
+Ctype             | Russian_Russia.1251
+Locale            |
+ICU Rules         |
+Access privileges |
+...
 ```
