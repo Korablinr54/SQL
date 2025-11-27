@@ -121,5 +121,5 @@ Ctype             | Russian_Russia.1251
 Locale            |
 ICU Rules         |
 Access privileges |
-...
+... 
 ```
