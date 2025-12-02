@@ -33,3 +33,17 @@ shop=# \dn -- проверяем существующие в базе схемы
  public | pg_database_owner
 (1 row)
 ```
+
+Давайте создадим подолнительную схему:
+```sql
+shop=# CREATE SCHEMA store; -- создаем схему store
+CREATE SCHEMA -- схема успешно создана
+
+shop=# \dn -- выводим список схем
+      List of schemas
+  Name  |       Owner
+--------+-------------------
+ public | pg_database_owner
+ store  | postgres -- наша новая схема
+(2 rows)
+```
