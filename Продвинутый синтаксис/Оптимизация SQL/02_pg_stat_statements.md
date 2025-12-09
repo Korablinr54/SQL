@@ -213,3 +213,59 @@ SELECT COUNT(*) FROM (SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_c
 -- Сбросить всю статистику для текущей базы данных
 SELECT pg_stat_statements_reset();
 ```
+
+### Выборочный сброс
+
+Можно сбросить только операции определенного типа:
+```sql
+-- Удалить только записи о восстановлении БД
+DELETE FROM pg_stat_statements 
+WHERE query LIKE 'COPY%FROM stdin%';
+```
+
+Или удалить служебные запросы:  
+```sql
+-- Удалить служебные запросы
+DELETE FROM pg_stat_statements 
+WHERE query LIKE 'SET %' 
+   OR query LIKE 'ALTER %'
+   OR query LIKE 'COMMIT%'
+   OR query LIKE 'BEGIN%';
+```
+
+Целевая очистка по пользователю:
+```sql
+-- Получение идентификатора учетной записи
+SELECT usesysid AS id_пользователя, 
+       usename AS имя_пользователя 
+  FROM pg_catalog.pg_user;
+
+-- Пример: Очистка статистики для пользователя 'test_postgres'
+SELECT pg_stat_statements_reset(
+    (SELECT usesysid FROM pg_catalog.pg_user WHERE usename = 'test_postgres'),
+    NULL,  -- все базы данных
+    NULL   -- все запросы
+);
+```
+
+Кстати мы и статистику можем смотрет ьп оконкртеному пользователю. Идентификатор пользователя (`userid`) хранит таблица `pg_catalog.pg_user` — это поле `usesysid`. Чтобы его получить, нужно знать имя пользователя: 
+```sql
+SELECT u.usename AS имя_пользователя,
+       s.query,
+       ROUND(s.mean_exec_time::NUMERIC,2) AS mean,
+       ROUND(s.total_exec_time::NUMERIC,2) AS total,
+       ROUND(s.min_exec_time::NUMERIC,2) AS min, 
+       ROUND(s.max_exec_time::NUMERIC,2) AS max,
+       s.calls,
+       s.rows,
+    -- вычисление % времени, потраченного на запрос, относительно других запросов                          
+       ROUND((100 * s.total_exec_time / sum(s.total_exec_time) OVER())::NUMERIC, 2) AS percent
+  FROM pg_stat_statements s
+  JOIN pg_catalog.pg_user u ON s.userid = u.usesysid
+ WHERE dbid = 16432 
+   AND u.usename = 'postgres'
+ ORDER BY mean_exec_time DESC
+ LIMIT 5;
+```
+
+
