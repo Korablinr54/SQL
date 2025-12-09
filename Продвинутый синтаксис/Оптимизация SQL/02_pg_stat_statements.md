@@ -229,9 +229,12 @@ WHERE query LIKE 'COPY%FROM stdin%';
 Или удалить служебные запросы:  
 ```sql
 -- Удалить служебные запросы
-DELETE FROM pg_stat_statements 
+SELECT pg_stat_statements_reset(userid, dbid, queryid) 
+FROM pg_stat_statements 
 WHERE query LIKE 'SET %' 
    OR query LIKE 'ALTER %'
+   OR query LIKE 'COPY%'
+   OR query LIKE 'CREATE%'
    OR query LIKE 'COMMIT%'
    OR query LIKE 'BEGIN%';
 ```
