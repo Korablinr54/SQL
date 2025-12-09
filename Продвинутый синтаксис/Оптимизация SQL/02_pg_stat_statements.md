@@ -104,8 +104,15 @@ oid  |datname  |
 16385|shop     |
 ```
 
+### пример работы 
 Зная идентификатор БД мы можем проанализировать запросы в этой БД:  
 ```sql
+ CREATE EXTENSION pg_stat_statements; -- подключаем модуль
+
+ SELECT oid, -- находим id интересующей базы
+        datname 
+   FROM pg_database;
+
  SELECT query, -- текст, а точнее шаблон текста запроса
         calls, -- количество вызовов
         total_exec_time, -- общее время выполнения запроса 
@@ -142,3 +149,57 @@ SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_cnt
   FROM online_store.orders; 
 ```
 
+Давайте найдем топ-5 самыйх медленных запросов:  
+```sql
+SELECT query, 
+       ROUND(total_exec_time::numeric,2) AS total_exec_time,
+       ROUND(mean_exec_time::numeric,2) AS mean_exec_time,                
+       ROUND(min_exec_time::numeric,2) AS min_exec_time, 
+       ROUND(max_exec_time::numeric,2) AS max_exec_time,
+       calls,
+       rows                          
+  FROM pg_stat_statements
+ WHERE dbid = 16432 
+ ORDER BY mean_exec_time DESC
+ LIMIT 5;
+```
+
+вывод:  
+```
+query                                                                                                       |total_exec_time|mean_exec_time|min_exec_time|max_exec_time|calls|rows|
+------------------------------------------------------------------------------------------------------------+---------------+--------------+-------------+-------------+-----+----+
+SELECT o.*, p.* ¶  FROM online_store.orders o ¶  JOIN online_store.profiles p ON (o.user_id = p.user_id)    |          24.34|         24.34|        24.34|        24.34|    1| 200|
+SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_cnt ¶  FROM online_store.orders                    |           5.62|          5.62|         5.62|         5.62|    1| 200|
+SELECT *, AVG(revenue) OVER (PARTITION BY event_dt) AS avg_rev ¶  FROM online_store.orders                  |           5.03|          5.03|         5.03|         5.03|    1| 200|
+SELECT *, ¶       ROUND(AVG(revenue) OVER (PARTITION BY event_dt), $1) AS avg_rev¶  FROM online_store.orders|           3.56|          3.56|         3.56|         3.56|    1| 200|
+SELECT COUNT(*) FROM (SELECT * FROM  online_store.orders¶) dbvrcnt                                          |           1.23|          1.23|         1.23|         1.23|    1|   1|
+```
+
+Это топ-5 самых медленных запросов, критерий - максимальное среднее время выполнения запроса (хотя у нас всего их 5 :) но для учебных целей сгодится)
+
+Изменим запрос, чтобы видеть долю относительно других:  
+```sql
+SELECT query,
+       ROUND(mean_exec_time::NUMERIC,2) AS mean,
+       ROUND(total_exec_time::NUMERIC,2) AS total,
+       ROUND(min_exec_time::NUMERIC,2) AS min, 
+       ROUND(max_exec_time::NUMERIC,2) AS max,
+       calls,
+       rows,
+    -- вычисление % времени, потраченного на запрос, относительно других запросов                          
+       ROUND((100 * total_exec_time / sum(total_exec_time) OVER())::NUMERIC, 2) AS percent
+FROM pg_stat_statements
+WHERE dbid = 16432 ORDER BY mean_exec_time DESC
+LIMIT 5;
+```
+
+Вывод:
+```sql
+query                                                                                                                   |mean |total |min  |max  |calls|rows|percent|
+------------------------------------------------------------------------------------------------------------------------+-----+------+-----+-----+-----+----+-------+
+SELECT o.*, p.* ¶  FROM online_store.orders o ¶  JOIN online_store.profiles p ON (o.user_id = p.user_id)                |22.88|114.38|16.98|30.98|    5|1000|  52.13|
+SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_cnt ¶  FROM online_store.orders                                | 6.50| 52.00| 4.22|10.66|    8|1600|  23.70|
+SELECT *, ¶       ROUND(AVG(revenue) OVER (PARTITION BY event_dt), $1) AS avg_rev¶  FROM online_store.orders            | 4.51| 31.55| 3.38| 8.04|    7|1400|  14.38|
+SELECT *, AVG(revenue) OVER (PARTITION BY event_dt) AS avg_rev ¶  FROM online_store.orders                              | 4.04| 12.11| 2.28| 5.03|    3| 600|   5.52|
+SELECT COUNT(*) FROM (SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_cnt ¶  FROM online_store.orders¶) dbvrcnt| 2.46|  2.46| 2.46| 2.46|    1|   1|   1.12|
+```
