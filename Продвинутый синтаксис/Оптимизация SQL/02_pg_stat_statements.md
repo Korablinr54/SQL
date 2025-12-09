@@ -212,6 +212,9 @@ SELECT COUNT(*) FROM (SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_c
 ```sql
 -- Сбросить всю статистику для текущей базы данных
 SELECT pg_stat_statements_reset();
+
+-- для сброса статистики базы данных с идентификатором 5 
+SELECT pg_stat_statements_reset(null, 5, null);
 ```
 
 ### Выборочный сброс
