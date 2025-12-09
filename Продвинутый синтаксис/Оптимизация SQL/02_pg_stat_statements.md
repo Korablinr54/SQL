@@ -44,3 +44,21 @@ D:/Program Files/Postgres 18/data/postgresql.conf
 ```
 
 Далее сохраняем файл и перезагружаем БД.
+
+### windows
+
+1) `win + r`  
+2) `services.msc`  
+3) найти процесс `postgresql-%`  
+4) ПКМ - перезапустить  
+5) готово
+
+### linux
+
+1) `sudo systemctl restart postgresql.service`
+
+### mac
+
+1) `sudo brew services restart postgresql`
+
+## Инструменты pg_stat_statements
