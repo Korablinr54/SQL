@@ -203,3 +203,13 @@ SELECT *, ¶       ROUND(AVG(revenue) OVER (PARTITION BY event_dt), $1) AS avg_r
 SELECT *, AVG(revenue) OVER (PARTITION BY event_dt) AS avg_rev ¶  FROM online_store.orders                              | 4.04| 12.11| 2.28| 5.03|    3| 600|   5.52|
 SELECT COUNT(*) FROM (SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_cnt ¶  FROM online_store.orders¶) dbvrcnt| 2.46|  2.46| 2.46| 2.46|    1|   1|   1.12|
 ```
+
+## Сброс статистики
+
+Представление `pg_stat_statements` хранит 5000 строк, это 5000 запросов. Тем не менее рано или поздно понадобится выполнить сброс статистики. Как это сделать:  
+
+### Быстрой сброс 
+```sql
+-- Сбросить всю статистику для текущей базы данных
+SELECT pg_stat_statements_reset();
+```
