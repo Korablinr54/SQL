@@ -125,3 +125,20 @@ query                                                                           
 SELECT query, ¶    calls,¶    total_exec_time,¶    min_exec_time, ¶    max_exec_time, ¶    mean_exec_time,¶    rows¶FROM pg_stat_statements ¶WHERE dbid = $1 ORDER BY total_exec_time DESC                                                                     |    7|              5.6823|       0.5218|             1.0906|   0.8117571428571428|  48|
   ```
 
+Давайте выполним несколько запросов, чтобы поулчить какую-то статистику для анализа:
+```sql
+SELECT o.*, p.* 
+  FROM online_store.orders o 
+  JOIN online_store.profiles p ON (o.user_id = p.user_id);
+
+SELECT *, 
+       ROUND(AVG(revenue) OVER (PARTITION BY event_dt), 2) AS avg_rev
+  FROM online_store.orders;
+
+SELECT *, AVG(revenue) OVER (PARTITION BY event_dt) AS avg_rev 
+  FROM online_store.orders;
+
+SELECT *, COUNT(*) OVER (PARTITION BY user_id) AS orders_cnt 
+  FROM online_store.orders; 
+```
+
