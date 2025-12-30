@@ -724,4 +724,6 @@ cmake-build-*/
 .idea/httpRequests
 
 # Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
+.idea/caches/build_file_checksums.serПроекты/06_Оптимизация_базы_данных_GastroHub/*.sql
+*.sql
+*.dump
