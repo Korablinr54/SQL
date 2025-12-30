@@ -319,4 +319,4 @@ BEGIN
                  r.rate
         ORDER BY e.name;
 END;
-$$ 
+$$  
