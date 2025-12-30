@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS raw_data.sales(
        price NUMERIC,
        date DATE,
        person_name TEXT,
-       phone TEXT,
+       phone TEXT, 
        discount NUMERIC,
        brand_origin TEXT);
 
