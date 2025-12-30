@@ -11,7 +11,7 @@ SELECT *
 Отсортируйте таблицу по убыванию значений в поле funding_total.
 */
 SELECT funding_total
-  FROM company
+  FROM company 
  WHERE category_code = 'news'
    AND country_code = 'USA'
  ORDER BY funding_total DESC;
