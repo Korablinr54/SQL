@@ -306,7 +306,7 @@ SELECT num_of_mnth,
   WITH cte AS (
 SELECT user_id
   FROM stackoverflow.posts
- GROUP BY user_id
+ GROUP BY user_id 
  ORDER BY COUNT(id) DESC
  LIMIT 1) 
 
