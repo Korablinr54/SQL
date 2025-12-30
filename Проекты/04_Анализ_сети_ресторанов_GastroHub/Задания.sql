@@ -240,7 +240,7 @@ SELECT district_name,
        cnt
   FROM cte
  ORDER BY cnt DESC
- LIMIT 1),
+ LIMIT 1), 
 
        cte_min AS (
 SELECT district_name,
