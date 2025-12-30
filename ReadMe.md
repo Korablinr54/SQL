@@ -36,5 +36,5 @@
 ## 📊 Статистика репозитория
 
 ![Языки программирования](https://img.shields.io/badge/PLpgSQL-100%25-336791?style=flat-square)
-![Коммиты](https://img.shields.io/badge/Коммиты-329-blue?style=flat-square)
+![Коммиты](https://img.shields.io/badge/Коммиты-341-blue?style=flat-square)
 ![Обновлено](https://img.shields.io/badge/Обновлено-декабрь%202025-success?style=flat-square)
